@@ -74,15 +74,20 @@ class BoardTest < Minitest::Test
   end
 
   def test_ship_placement
+
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
       board.place(cruiser, ["A1", "A2", "A3"])
       cell_1 = board.cells["A1"]
       cell_2 = board.cells["A2"]
       cell_3 = board.cells["A3"]
-
-      assert_equal cruiser, cell_1.ship("Cruiser", 3)
-      assert_equal cruiser, cell_2.ship("Cruiser", 3)
-      assert_equal cruiser, cell_3.ship("Cruiser", 3)
+      cell_4 = board.cells["C1"]
+      cell_5 = board.cells["C2"]
+      board.place(submarine, ["C1", "C2"])
+      assert_equal cruiser, cell_1.ship
+      assert_equal cruiser, cell_2.ship
+      assert_equal cruiser, cell_3.ship
+      assert_equal submarine, cell_4.ship
     end
 end
