@@ -65,6 +65,8 @@ class Board
   end
 
   def place(ship, coordinates)
-
-
+    coordinates.map do |cell|
+      cell.place_ship(ship)
+    end
+  end
 end
