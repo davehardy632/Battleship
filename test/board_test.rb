@@ -24,19 +24,8 @@ class BoardTest < Minitest::Test
     assert_equal false, board.valid_coordinate?("D5")
   end
 
-  # def test_that_placement_is_valid
-  #
-  #     board = Board.new
-  #     cruiser = Ship.new("Cruiser", 3)
-  #     submarine = Ship.new("Submarine", 2)
-  #
-  #     assert_equal ["A", "1", "A", "2", "A", "4"], board.return_flattened_array(cruiser, ["A1", "A2", "A4"])
-  # end
-
   def test_extract_letters
-
     board = Board.new
-
 
     assert_equal ["A", "A", "A"], board.extract_letters(["A", "1", "A", "2", "A", "4"])
   end
@@ -44,7 +33,6 @@ class BoardTest < Minitest::Test
   def test_extract_numbers
 
     board = Board.new
-
     assert_equal ["1", "2", "4"], board.extract_numbers(["A","1", "A", "2", "A", "4"])
   end
 
@@ -74,7 +62,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_ship_placement
-
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -89,5 +76,17 @@ class BoardTest < Minitest::Test
       assert_equal cruiser, cell_2.ship
       assert_equal cruiser, cell_3.ship
       assert_equal submarine, cell_4.ship
+      assert_equal submarine, cell_5.ship
+      assert_equal cell_1.ship, cruiser
+      assert_equal true, cell_1.ship == cell_2.ship
     end
+
+    def test_are_the_ships_overlapping?
+      board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
+    submarine = Ship.new("Submarine", 2)
+    assert_equal true, board.ships_overlap?(submarine, ["A1", "B1"])
+    assert_equal false, board.ships_overlap?(submarine, ["B1", "C1"])
+  end
 end
