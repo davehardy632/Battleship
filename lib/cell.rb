@@ -18,6 +18,10 @@ class Cell
     @empty = false
   end
 
+  def occupied?
+    !empty?
+  end
+
   def fired_upon?
     @fired_upon
   end
@@ -33,7 +37,7 @@ class Cell
     if @fired_upon == false && hidden == false
       p "."
     elsif @fired_upon == false && hidden == true && empty? == true
-      p "."  
+      p "."
     elsif @fired_upon == true && empty? == true
       p "M"
     elsif @fired_upon == true && empty? == false && @ship.sunk? == false
