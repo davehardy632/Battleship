@@ -22,10 +22,13 @@ class Cell
     @empty = false
   end
 
+  def occupied?
+    !empty?
+  end
+
   def fired_upon?
     @fired_upon
   end
-
 
   def fire_upon
     if @empty == false
@@ -37,13 +40,15 @@ class Cell
   def render(hidden = false)
     if @fired_upon == false && hidden == false
       p "."
+    elsif @fired_upon == false && hidden == true && empty? == true
+      p "."
     elsif @fired_upon == true && empty? == true
       p "M"
     elsif @fired_upon == true && empty? == false && @ship.sunk? == false
       p "H"
-    elsif @fired_upon = true && @ship.sunk? ==  true
+    elsif @fired_upon == true && @ship.sunk? ==  true
       p "X"
-    elsif @fired_upon == false && hidden == true
+    elsif @fired_upon == false && hidden == true && empty? == false
       p "S"
     end
 
