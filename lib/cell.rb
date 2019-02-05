@@ -13,6 +13,10 @@ class Cell
     @empty
   end
 
+  def occupied?
+    !empty?
+  end
+
   def place_ship(ship)
     @ship = ship
     @empty = false
@@ -47,5 +51,6 @@ class Cell
     elsif @fired_upon == false && hidden == true && empty? == false
       p "S"
     end
+
   end
 end

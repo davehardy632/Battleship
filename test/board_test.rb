@@ -99,6 +99,7 @@ class BoardTest < Minitest::Test
     assert_equal true, board.valid_placement?(cruiser, ["C1", "C2", "C3"])
   end
 
+
   def test_that_board_is_rendered
     board = Board.new
     cruiser = Ship.new("Cruiser", 3)
@@ -119,4 +120,5 @@ class BoardTest < Minitest::Test
     assert_equal expected, board.render
     assert_equal expected_show_ship, board.render(true)
   end
+
 end
