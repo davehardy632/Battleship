@@ -51,6 +51,9 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
+    if ships_overlap?(ship, coordinates)
+      return false
+    else
     coordinates = return_flattened_array(coordinates)
     letter_box = ["A", "B", "C", "D", "E", "F", "G", "H", "I"].join
     number_box = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].join
@@ -69,17 +72,7 @@ class Board
     else false
     end
   end
-
-#
-  # def cells_into_array(coordinates)
-  #   @occupied_cells << coordinates
-  #   if @occupied_cells.join.include?(coordinates.join)
-  #     binding.pry
-  #     false
-  #   else
-  #     true
-  #   end
-  # end
+end
 
   def place(ship, coordinates)
     if valid_placement?(ship, coordinates)

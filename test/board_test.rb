@@ -62,31 +62,40 @@ class BoardTest < Minitest::Test
   end
 
   def test_ship_placement
-      board = Board.new
-      cruiser = Ship.new("Cruiser", 3)
-      submarine = Ship.new("Submarine", 2)
-      board.place(cruiser, ["A1", "A2", "A3"])
-      cell_1 = board.cells["A1"]
-      cell_2 = board.cells["A2"]
-      cell_3 = board.cells["A3"]
-      cell_4 = board.cells["C1"]
-      cell_5 = board.cells["C2"]
-      board.place(submarine, ["C1", "C2"])
-      assert_equal cruiser, cell_1.ship
-      assert_equal cruiser, cell_2.ship
-      assert_equal cruiser, cell_3.ship
-      assert_equal submarine, cell_4.ship
-      assert_equal submarine, cell_5.ship
-      assert_equal cell_1.ship, cruiser
-      assert_equal true, cell_1.ship == cell_2.ship
-    end
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    board.place(cruiser, ["A1", "A2", "A3"])
+    cell_1 = board.cells["A1"]
+    cell_2 = board.cells["A2"]
+    cell_3 = board.cells["A3"]
+    cell_4 = board.cells["C1"]
+    cell_5 = board.cells["C2"]
+    board.place(submarine, ["C1", "C2"])
+    assert_equal cruiser, cell_1.ship
+    assert_equal cruiser, cell_2.ship
+    assert_equal cruiser, cell_3.ship
+    assert_equal submarine, cell_4.ship
+    assert_equal submarine, cell_5.ship
+    assert_equal cell_1.ship, cruiser
+    assert_equal true, cell_1.ship == cell_2.ship
+  end
 
-    def test_are_the_ships_overlapping?
-      board = Board.new
+  def test_are_the_ships_overlapping?
+    board = Board.new
     cruiser = Ship.new("Cruiser", 3)
     board.place(cruiser, ["A1", "A2", "A3"])
     submarine = Ship.new("Submarine", 2)
     assert_equal true, board.ships_overlap?(submarine, ["A1", "B1"])
     assert_equal false, board.ships_overlap?(submarine, ["B1", "C1"])
+  end
+
+  def test_its_still_valid_placement
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    board.place(cruiser, ["A1", "A2", "A3"])
+    submarine = Ship.new("Submarine", 2)
+    assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
+    assert_equal true, board.valid_placement?(cruiser, ["C1", "C2", "C3"])
   end
 end
