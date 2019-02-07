@@ -85,7 +85,7 @@ end
 
 
   def render(hidden = false)
-    p "  1 2 3 4 \n" +
+      "  1 2 3 4 \n" +
      "A #{@cells["A1"].render(hidden)} #{@cells["A2"].render(hidden)} #{@cells["A3"].render(hidden)} #{@cells["A4"].render(hidden)} \n" +
      "B #{@cells["B1"].render(hidden)} #{@cells["B2"].render(hidden)} #{@cells["B3"].render(hidden)} #{@cells["B4"].render(hidden)} \n" +
      "C #{@cells["C1"].render(hidden)} #{@cells["C2"].render(hidden)} #{@cells["C3"].render(hidden)} #{@cells["C4"].render(hidden)} \n" +
