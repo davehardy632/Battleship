@@ -10,6 +10,7 @@ class Game
     @computer_board = Board.new
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
+    @@valid_coordinates = ["A1","A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
   end
 
   def main_menu
@@ -30,25 +31,21 @@ class Game
   end
 
 def quit_game
+end
 
 def start_game
-  # once computer places ships print the below message
-  p "Computer has layed out ships on the grid."
-  p "You now need to lay out your two ships."
-  p "The Cruiser is two units long and the Submarine is three units long."
-    p        "  1 2 3 4 "
-    p        "A . . . . "
-    p        "B . . . . "
-    p        "C . . . . "
-    p        "D . . . . "
-p "Enter the squares for the Cruiser (3 spaces):"
+  "I have laid out my ships on the grid.
+  You now need to lay out your two ships.
+  The Cruiser is two units long and the Submarine is three units long."
+end
 
+def start_game_2
+  "Enter the squares for the Cruiser (3 spaces):"
 end
 
   def player_place_ship
     coords = gets.chomp.split(" ")
     @player_board.place(@cruiser, coords)
-
   end
 
   def produce_random_coordinates(ship)
